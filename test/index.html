@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="jquery-3.2.1.min.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            url : 'http://192.168.16.123:8002/city/languageCode?languageCode=ch&countryId=1',
+            type : 'get',
+            dataType : 'json',
+            success : function (data) {
+                console.log('data', data)
+            },
+            error : function(jqXHR, textStatus, errorThrown){
+                alert('error ' + textStatus + " " + errorThrown);
+            }
+        });
+    })
+</script>
+</html>
