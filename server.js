@@ -25,6 +25,8 @@ const inspect = require('util').inspect;
 //     multiples: true
 // }));
 
+app.use(express.static(path.join(__dirname,'static')));
+
 app.locals.blog = {
     title: pkg.name,
     description: pkg.description

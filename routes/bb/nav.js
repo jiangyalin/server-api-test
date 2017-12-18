@@ -23,7 +23,19 @@ router.post('/post', function (req, res) {
   res.jsonp(data);
 });
 
+router.delete('/delete', function (req, res) {
+  console.log('post.body', req.body)
+  console.log('get.query', req.query)
+  const data = {
+    "total": 'd',
+    "rows": 'p'
+  };
+  res.jsonp(data);
+});
+
 router.post('/upload', function (req, res) {
+  console.log('post.body', req.body)
+  console.log('get.query', req.query)
   //生成multiparty对象，并配置上传目标路径
   const form = new multiparty.Form({
     maxFieldsSize: 100,
