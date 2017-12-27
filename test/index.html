@@ -1,26 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<template>
+    <div class="s-max-width-10"
+         v-loading="loading">
+        <transition name="el-fade-in-linear">
+            <el-form
+                    :model="ruleForm"
+                    :rules="rules"
+                    ref="ruleForm"
+                    label-width="140px"
+                    size="mini"
+                    class="demo-ruleForm">
+                <el-form-item label="货币类型" prop="currencyType">
+                    <el-select v-model="ruleForm.currencyType">
+                        <el-option
+                                v-for="item in currencyTypeOption"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="支付比例" prop="paymentRatio">
+                    <el-slider
+                            v-model="ruleForm.paymentRatio"
+                            :step="10">
+                    </el-slider>
+                </el-form-item>
+                <el-form-item label="全额退款天数" prop="fullRefundDays">
+                    <el-input-number
+                            v-model="ruleForm.fullRefundDays"
+                            :min="0"
+                            :max="10"></el-input-number>
+                </el-form-item>
+                <el-form-item label="部分退款天数" prop="partialRefundDays">
+                    <el-input-number
+                            v-model="ruleForm.partialRefundDays"
+                            :min="0"
+                            :max="10"></el-input-number>
+                </el-form-item>
+                <el-form-item label="部分退款比例" prop="partialRefundPercentage">
+                    <el-slider
+                            v-model="ruleForm.partialRefundPercentage"
+                            :step="10">
+                    </el-slider>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+                    <el-button @click="resetForm('ruleForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </transition>
+    </div>
+</template>
 
-</body>
-<script src="jquery-3.2.1.min.js"></script>
-<script>
-    $(function () {
-        $.ajax({
-            url : 'http://192.168.16.123:8002/city/languageCode?languageCode=ch&countryId=1',
-            type : 'get',
-            dataType : 'json',
-            success : function (data) {
-                console.log('data', data)
-            },
-            error : function(jqXHR, textStatus, errorThrown){
-                alert('error ' + textStatus + " " + errorThrown);
+<script type="text/ecmascript-6">
+    // 获取货币政策
+    const GetCurrency = vue => {
+        const currency = new Promise((resolve, reject) => {
+            vue.$http({
+                method: 'get',
+                url: window.config.server + '/enums/currencies',
+                params: {},
+                headers: {
+                    'languageCode': vue.$route.params.lang,
+                    'Authorization': 'Bearer ' + vue.$cookie.get('token')
+                }
+            }).then((response) => {
+                resolve(response)
+            }).catch((error) => {
+                reject(error)
+            })
+        })
+        return currency
+    }
+    export default {
+        data () {
+            return {
+                props: {
+                    value: 'label',
+                    children: 'cities'
+                },
+                ruleForm: {
+                    currencyType: '', // 货币类型
+                    paymentRatio: 0, // 支付比例
+                    fullRefundDays: '0', // 全额退款天数
+                    partialRefundDays: '0', // 部分退款天数
+                    partialRefundPercentage: 0 // 部分退款比例
+                },
+                rules: {
+                    currencyType: [
+                        { required: true, message: '请选择货币类型', trigger: 'blur' }
+                    ],
+                    paymentRatio: [
+                        { required: true, message: '支付比例', trigger: 'blur' }
+                    ],
+                    fullRefundDays: [
+                        { required: true, message: '全额退款天数', trigger: 'blur' }
+                    ],
+                    partialRefundDays: [
+                        { required: true, message: '部分退款天数', trigger: 'blur' }
+                    ],
+                    partialRefundPercentage: [
+                        { required: true, message: '部分退款比例', trigger: 'blur' }
+                    ]
+                },
+                currencyTypeOption: [], // 货币类型
+                loading: false
             }
-        });
-    })
+        },
+        methods: {},
+        created: function () {
+            // 获取货币政策
+            const Currency = GetCurrency(this)
+
+            Currency.then((resolve) => {
+                console.log('resolve', resolve)
+                let currencyTypeOption = []
+                currencyTypeOption = resolve.data.map(data => {
+                    return {
+                        value: data.id,
+                        label: data.symbol
+                    }
+                })
+                this.currencyTypeOption = currencyTypeOption
+            }).catch((reject) => {
+                window.publicFunction.error(reject)
+            })
+        }
+    }
 </script>
-</html>
+
+<style>
+
+</style>

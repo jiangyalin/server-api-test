@@ -5,7 +5,7 @@ const fs = require('fs');
 
 router.get('/get', function (req, res) {
   console.log('get.query', req.query)
-  console.log('post.body', req.headers.languagecode)
+  console.log('req.headers.languagecode', req.headers.languagecode)
   const data = {
     "total": 'd',
     "rows": 'p'
@@ -24,8 +24,16 @@ router.post('/post', function (req, res) {
 });
 
 router.delete('/delete', function (req, res) {
-  console.log('post.body', req.body)
   console.log('get.query', req.query)
+  const data = {
+    "total": 'd',
+    "rows": 'p'
+  };
+  res.jsonp(data);
+});
+
+router.patch('/patch', function (req, res) {
+  console.log('post.body', req.body)
   const data = {
     "total": 'd',
     "rows": 'p'
