@@ -1,6 +1,6 @@
 //mongodb配置文件
 module.exports = {
-    port: 8083,
+    port: 81,
     session: {
         secret: 'pixivDB',
         key: 'pixivDB',
