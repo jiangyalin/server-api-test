@@ -3,7 +3,7 @@ const router = express.Router();
 const multiparty = require('multiparty');
 const fs = require('fs');
 
-router.get('/get/:a', function (req, res) {
+router.get('/get', function (req, res) {
   console.log('get.query', req.query)
   console.log('get.params', req.params)
   console.log('req.headers.languagecode', req.headers.languagecode)
