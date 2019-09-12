@@ -25,7 +25,9 @@ const history = require('connect-history-api-fallback');
 //     keepExtensions: true, // 保留后缀
 //     multiples: true
 // }));
-app.use(history());
+
+// 路由重定向不能与接口同时使用
+// app.use(history());
 
 app.use(express.static(path.join(__dirname, 'static')));
 
