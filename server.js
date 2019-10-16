@@ -56,6 +56,6 @@ app.all('*', function (req, res, next) {
 routes(app);
 
 app.listen(config.port, function () {
-  console.log('服务启动'+config.port);
+  console.log('服务启动' + config.port);
 });
 
