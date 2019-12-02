@@ -11,4 +11,6 @@ router.use('/home', require('./home'));
 
 router.use('/widget/getWidgets', require('./get-widgets'));
 
+router.use('/login', require('./login'));
+
 module.exports = router;
