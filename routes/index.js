@@ -8,4 +8,6 @@ module.exports = function (app) {
     // 民宿
     app.use('/bb', require('./bb'));
 
+    app.use('/xcx', require('./xcx'));
+
 };
