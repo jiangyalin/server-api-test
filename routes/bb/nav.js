@@ -8,8 +8,12 @@ router.get('/get', function (req, res) {
   console.log('get.params', req.params)
   console.log('req.headers.languagecode', req.headers.languagecode)
   const data = {
-    "total": 'd',
-    "rows": 'p'
+    code: 200,
+    data: {
+      total: 'd',
+      rows: 'p'
+    },
+    msg: ''
   };
   res.jsonp(data);
 });
@@ -18,8 +22,12 @@ router.post('/post', function (req, res) {
   console.log('post.body', req.body)
   console.log('post.req.files', req.files)
   const data = {
-    "total": 'd',
-    "rows": 'p'
+    code: 200,
+    data: {
+      total: 'd',
+      rows: 'p'
+    },
+    msg: ''
   };
   res.jsonp(data);
 });
@@ -27,8 +35,12 @@ router.post('/post', function (req, res) {
 router.delete('/delete', function (req, res) {
   console.log('get.query', req.query)
   const data = {
-    "total": 'd',
-    "rows": 'p'
+    code: 200,
+    data: {
+      total: 'd',
+      rows: 'p'
+    },
+    msg: ''
   };
   res.jsonp(data);
 });
@@ -36,8 +48,12 @@ router.delete('/delete', function (req, res) {
 router.patch('/patch', function (req, res) {
   console.log('post.body', req.body)
   const data = {
-    "total": 'd',
-    "rows": 'p'
+    code: 200,
+    data: {
+      total: 'd',
+      rows: 'p'
+    },
+    msg: ''
   };
   res.jsonp(data);
 });
@@ -70,8 +86,12 @@ router.post('/upload', function (req, res) {
     }
   });
   const data = {
-    "total": 'd',
-    "rows": 'p'
+    code: 200,
+    data: {
+      total: 'd',
+      rows: 'p'
+    },
+    msg: ''
   };
   res.jsonp(data);
 });
