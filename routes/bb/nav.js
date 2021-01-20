@@ -142,6 +142,12 @@ router.post('/upload', function (req, res) {
 
     // 监听end事件，文件数据接收完毕，关闭这个可写流
     file.on('end', function (data) {
+      const _data = {
+        code: 200,
+        urls: [filename],
+        msg: ''
+      }
+      res.jsonp(_data)
       writeStream.end()
     })
   })
@@ -183,12 +189,12 @@ router.post('/upload', function (req, res) {
   //     })
   //   }
   // })
-  const data = {
-    code: 200,
-    urls: [''],
-    msg: ''
-  }
-  res.jsonp(data)
+  // const data = {
+  //   code: 200,
+  //   urls: [''],
+  //   msg: ''
+  // }
+  // res.jsonp(data)
 })
 
 module.exports = router
