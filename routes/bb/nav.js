@@ -145,6 +145,7 @@ router.post('/upload', function (req, res) {
       const _data = {
         code: 200,
         urls: [filename],
+        data: 'http://192.168.14.160:8086/public/img/zzz.pdf',
         msg: ''
       }
       res.jsonp(_data)

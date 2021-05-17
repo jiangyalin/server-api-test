@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script>(function (doc, win) {
+    var docEl = doc.documentElement,
+      resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+      recalc = function () {
+        var clientWidth = docEl.clientWidth
+        if (!clientWidth) return
+        if (clientWidth >= 720) {
+          docEl.style.fontSize = '1px'
+        } else {
+          docEl.style.fontSize = (clientWidth / 400) + 'px'
+        }
+      }
+    if (!doc.addEventListener) return
+    win.addEventListener(resizeEvt, recalc, false)
+    doc.addEventListener('DOMContentLoaded', recalc, false)
+  })(document, window)</script>
+  <link rel="icon" href="/favicon.ico">
+  <title>test</title>
+  <link href="/css/chunk-251ca8e0.08e9b452.css" rel="prefetch">
+  <link href="/css/chunk-293f1c8d.d5486125.css" rel="prefetch">
+  <link href="/css/chunk-4d16c5ea.5991b680.css" rel="prefetch">
+  <link href="/css/chunk-5a224e88.89180354.css" rel="prefetch">
+  <link href="/css/chunk-64bfa21d.86f962e8.css" rel="prefetch">
+  <link href="/css/chunk-66616ca8.42d5f174.css" rel="prefetch">
+  <link href="/css/chunk-7ee3438c.10255cf4.css" rel="prefetch">
+  <link href="/css/chunk-dd3975fa.5d0606ac.css" rel="prefetch">
+  <link href="/js/chunk-251ca8e0.9ec4bd39.js" rel="prefetch">
+  <link href="/js/chunk-293f1c8d.ea2cc252.js" rel="prefetch">
+  <link href="/js/chunk-4bf74b5c.be5ec030.js" rel="prefetch">
+  <link href="/js/chunk-4d16c5ea.7954fe7e.js" rel="prefetch">
+  <link href="/js/chunk-5a224e88.7516bbb2.js" rel="prefetch">
+  <link href="/js/chunk-64bfa21d.6b31ff22.js" rel="prefetch">
+  <link href="/js/chunk-66616ca8.641ce59e.js" rel="prefetch">
+  <link href="/js/chunk-7ee3438c.823ff50a.js" rel="prefetch">
+  <link href="/js/chunk-dd3975fa.2eafc6c1.js" rel="prefetch">
+  <link href="/css/app.1a1efa3f.css" rel="preload" as="style">
+  <link href="/css/chunk-vendors.a6f136cd.css" rel="preload" as="style">
+  <link href="/js/app.0a3e14d7.js" rel="preload" as="script">
+  <link href="/js/chunk-vendors.229d2594.js" rel="preload" as="script">
+  <link href="/css/chunk-vendors.a6f136cd.css" rel="stylesheet">
+  <link href="/css/app.1a1efa3f.css" rel="stylesheet">
+</head>
+<body>
+<noscript><strong>We're sorry but test doesn't work properly without JavaScript enabled. Please enable it to
+  continue.</strong></noscript>
+<div id="app"></div>
+<script src="/js/chunk-vendors.229d2594.js"></script>
+<script src="/js/app.0a3e14d7.js"></script>
+</body>
+</html>
