@@ -32,7 +32,7 @@ const history = require('connect-history-api-fallback');
 // 跨域
 app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild, languageCode, x-auth-token');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild, languageCode, x-auth-token, token');
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS, PATCH');
 
   if (req.method === 'OPTIONS') {
@@ -53,9 +53,23 @@ app.locals.blog = {
 app.use(bodyParser.json({ limit: '50mb'}));//设置最大提交值
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
+const getIpAddress = () => {
+	const interfaces = os.networkInterfaces()
+	for (const dev in interfaces) {
+		const iface = interfaces[dev]
+		for (let i = 0; i < iface.length; i++) {
+			const { family, address, internal } = iface[i]
+			if (family === 'IPv4' && address !== '127.0.0.1' && !internal) {
+				return address
+			}
+		}
+	}
+}
+
 routes(app);
 
 app.listen(config.port, function () {
-  console.log('服务启动' + config.port);
-});
+  console.log('服务启动' + config.port)
+	console.log('http://' + getIpAddress() + ':' + config.port)
+})
 
