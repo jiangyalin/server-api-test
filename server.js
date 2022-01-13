@@ -1,17 +1,17 @@
-const path = require('path');
-const express = require('express');
-const app = express();
-const pkg = require('./package');
-const routes = require('./routes/');
-const config = require('./config/default');
-const bodyParser = require('body-parser');
-const formidable = require('express-formidable');
-const http = require('http');
-const os = require('os');
-const fs = require('fs');
-const busboy = require('busboy');
-const inspect = require('util').inspect;
-const history = require('connect-history-api-fallback');
+const path = require('path')
+const express = require('express')
+const app = express()
+const pkg = require('./package')
+const routes = require('./routes/')
+const config = require('./config/default')
+const bodyParser = require('body-parser')
+const formidable = require('express-formidable')
+const http = require('http')
+const os = require('os')
+const fs = require('fs')
+const busboy = require('busboy')
+const inspect = require('util').inspect
+const history = require('connect-history-api-fallback')
 
 // 处理表单及文件上传的中间件
 // app.use(require('express-formidable')({
@@ -31,27 +31,27 @@ const history = require('connect-history-api-fallback');
 
 // 跨域
 app.all('*', function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild, languageCode, x-auth-token, token');
-  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS, PATCH');
+	res.header('Access-Control-Allow-Origin', '*')
+	res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild, languageCode, x-auth-token, token')
+	res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS, PATCH')
 
-  if (req.method === 'OPTIONS') {
-    res.sendStatus(200);
-  }
-  else {
-    next();
-  }
-});
+	if (req.method === 'OPTIONS') {
+		res.sendStatus(200)
+	} else {
+		next()
+	}
+})
 
-app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, 'static')))
 
 app.locals.blog = {
-  title: pkg.name,
-  description: pkg.description
-};
+	title: pkg.name,
+	description: pkg.description
+}
 
-app.use(bodyParser.json({ limit: '50mb'}));//设置最大提交值
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({ limit: '50mb' })) // 设置最大提交值
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
+// app.use(formidable({ multiples: true }))
 
 const getIpAddress = () => {
 	const interfaces = os.networkInterfaces()
@@ -66,10 +66,10 @@ const getIpAddress = () => {
 	}
 }
 
-routes(app);
+routes(app)
 
 app.listen(config.port, function () {
-  console.log('服务启动' + config.port)
+	console.log('服务启动' + config.port)
 	console.log('http://' + getIpAddress() + ':' + config.port)
 })
 
