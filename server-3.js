@@ -4,7 +4,7 @@ const app = express()
 const expressStaticGzip = require('express-static-gzip')
 const history = require('connect-history-api-fallback')
 
-app.use('/', expressStaticGzip('static'))
+app.use('/', expressStaticGzip('dist'))
 
 app.use(history({
   verbose: true,
@@ -12,7 +12,7 @@ app.use(history({
 }))
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'static/index.html'))
+  res.sendFile(path.join(__dirname, 'dist/index.html'))
 })
 
 app.listen(8020, () => {
